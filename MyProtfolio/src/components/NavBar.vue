@@ -31,16 +31,6 @@
                     <span class="navbar-toggler-icon"></span>
                   </div>
 
-                  <!-- <img
-                    src="../assets/toogler.png"
-                    alt=""
-                    style="width: 50px; height: 50px"
-                    class="navbar-toggler"
-                    data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02"
-                    aria-controls="navbarTogglerDemo02"
-                    aria-label="Toggle navigation"
-                  /> -->
                   <div
                     class="collapse navbar-collapse"
                     id="navbarTogglerDemo02"

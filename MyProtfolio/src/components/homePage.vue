@@ -26,11 +26,8 @@
           />
         </div>
         <div class="seedling">
-          <i
-            class="fa-solid fa-seedling align-items-center d-flex justify-content-center"
-          ></i>
+         hello
         </div>
-        <div class="right">hello</div>
       </div>
     </div>
   </div>
@@ -99,12 +96,11 @@ export default {
   height: 500px;
 }
 .seedling {
-    position: absolute;
-    background: var(--white);
-    top: 100px;
-    right: -30px;
-    border-radius: 15px;
-    box-shadow: 0 20px 30px rgba(0,0,0,.07);
+  position: absolute;
+  background: var(--white);
+  /* top: 100px; */
+  /* right: -30px; */
+  border-radius: 15px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.07);
 }
-
 </style>
