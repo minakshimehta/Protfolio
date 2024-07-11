@@ -18,6 +18,10 @@ import NavBar from './components/NavBar.vue';
 const app = createApp(App);
 app.component('NavBar', NavBar);
 app.component('font-awesome-icon', FontAwesomeIcon)
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+import $ from 'jquery';
+window.$ = $;
 
 
 // Mount the app
