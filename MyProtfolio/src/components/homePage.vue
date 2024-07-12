@@ -14,7 +14,12 @@
           it out.
         </div>
 
-        <button class="callAction colorCode">Call To Action 2</button>
+        <button
+          class="callAction colorCode"
+          :style="{ backgroundColor: selectedColor }"
+        >
+          Call To Action 2
+        </button>
       </div>
 
       <div class="aboutContainer">
@@ -38,7 +43,10 @@
               v-for="(data, index) in someText"
               :key="index"
             >
-              <div class="someStyle colorCode">
+              <div
+                class="someStyle colorCode"
+                :style="{ backgroundColor: selectedColor }"
+              >
                 <img
                   src="../assets/check.png"
                   alt=""
@@ -60,21 +68,150 @@
           </div>
         </div>
       </div>
-      <div style="display: flex; margin-top: 8rem; padding-right: 6rem">
+      <div class="container">
+        <div class="servicesDesign">
+          <div
+            class="servicesContainer"
+            v-for="(data, index) in services"
+            :key="index"
+          >
+            <div style="width: 90px">
+              <div
+                class="servicesIcon colorCode"
+                :style="{ backgroundColor: selectedColor }"
+              >
+                <img
+                  src="../assets/Group 3131.svg"
+                  alt=""
+                  width="25px"
+                  height="25px"
+                />
+              </div>
+            </div>
+            <div class="servicesDetails">
+              <div class="servicesHeader">{{ data.heading }}</div>
+              <div class="servicesText">{{ data.serviceText }}</div>
+              <button class="readBtn">Read more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contactContainer">
+      <div class="container contactDetails">
+        <div class="contactText">
+          <div class="contactHeadline">Contact</div>
+
+          <div class="contact_Text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed
+            nisi id lorem blandit consequat. Vestibulum ante ipsum primis in
+            faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque
+            consectetur.
+          </div>
+          <button
+            class="callAction3 colorCode"
+            :style="{ backgroundColor: selectedColor }"
+          >
+            Call To Action 3
+          </button>
+        </div>
+        <div class="imageContainer">
+          <img
+            src="https://demo.braxwebdesign.com/wp-content/uploads/2024/04/portrait-of-a-mixed-race-cheerful-businessman-remo-2023-11-27-05-01-04-utc-1-scaled-1.jpg"
+            alt=""
+            class="img-contain"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="colorPopPage" v-if="showAdditionalContent">
+      <div class="pageContainer row">
         <div
-          class="servicesContainer"
-          v-for="(data, index) in services"
-          :key="index"
-          style=""
+          class="colorSet col-4 colorChoose1"
+          @click="addClassToBox2('colorChoose1')"
         >
-          <div class="servicesIcon colorCode">
-            <img src="../assets/chart.png" alt="" width="30px" height="30px" />
-          </div>
-          <div class="servicesDetails">
-            <div class="servicesHeader">{{ data.heading }}</div>
-            <div class="servicesText">{{ data.serviceText }}</div>
-            <button class="readBtn">Read more</button>
-          </div>
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose2"
+          @click="addClassToBox2('colorChoose2')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose3"
+          @click="addClassToBox2('colorChoose3')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose4"
+          @click="addClassToBox2('colorChoose4')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose5"
+          @click="addClassToBox2('colorChoose5')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose6"
+          @click="addClassToBox2('colorChoose6')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose7"
+          @click="addClassToBox2('colorChoose7')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose8"
+          @click="addClassToBox2('colorChoose8')"
+        >
+          color Set
+        </div>
+        <div
+          class="colorSet col-4 colorChoose9"
+          @click="addClassToBox2('colorChoose9')"
+        >
+          color Set
+        </div>
+      </div>
+    </div>
+    <div class="functionBtn">
+      <div>
+        <div>
+          <button
+            class="selectBtn colorCode"
+            style="margin-top: 10px"
+            @click="toggleDiv"
+            :style="{ backgroundColor: selectedColor }"
+          >
+            Select Color
+          </button>
+        </div>
+        <div>
+          <button
+            class="selectBtn colorCode"
+            style="margin-top: 10px"
+            :style="{ backgroundColor: selectedColor }"
+          >
+            Create Logo
+          </button>
+        </div>
+        <div>
+          <button
+            class="selectBtn colorCode"
+            style="margin-top: 10px"
+            :style="{ backgroundColor: selectedColor }"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>
@@ -83,10 +220,11 @@
 
 <script>
 import NavBar from "./NavBar.vue";
+import functionBtn from "./functionBtn.vue";
 
 export default {
   name: "homePage",
-  components: { NavBar },
+  components: { NavBar, functionBtn },
 
   data() {
     return {
@@ -113,7 +251,69 @@ export default {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         },
       ],
+      showAdditionalContent: false,
+      colorChoose1: false,
+      selectedColor: "",
     };
+  },
+
+  methods: {
+    toggleDiv() {
+      this.showAdditionalContent = !this.showAdditionalContent;
+    },
+    addClassToBox2(colorClass) {
+      // Reset all colorChoose properties
+      this.resetColorClasses();
+
+      // Set the chosen color class
+      this[colorClass] = true;
+
+      // Update selectedColor based on the chosen color class
+      switch (colorClass) {
+        case "colorChoose1":
+          this.selectedColor = "#008000";
+          break;
+        case "colorChoose2":
+          this.selectedColor = "#800080";
+          break;
+        case "colorChoose3":
+          this.selectedColor = "#ff0000";
+          break;
+        case "colorChoose4":
+          this.selectedColor = "#00ff00";
+          break;
+        case "colorChoose5":
+          this.selectedColor = "#800000";
+          break;
+        case "colorChoose6":
+          this.selectedColor = "#ff00ff";
+          break;
+        case "colorChoose7":
+          this.selectedColor = "#00ffff";
+          break;
+        case "colorChoose8":
+          this.selectedColor = "#ffff00";
+          break;
+        case "colorChoose9":
+          this.selectedColor = "#0000ff";
+          break;
+        default:
+          this.selectedColor = "";
+      }
+      console.log("Selected Color:", this.selectedColor);
+    },
+    resetColorClasses() {
+      // Reset all colorChoose properties to false
+      this.colorChoose1 = false;
+      this.colorChoose2 = false;
+      this.colorChoose3 = false;
+      this.colorChoose4 = false;
+      this.colorChoose5 = false;
+      this.colorChoose6 = false;
+      this.colorChoose7 = false;
+      this.colorChoose8 = false;
+      this.colorChoose9 = false;
+    },
   },
 };
 </script>
@@ -150,7 +350,8 @@ export default {
   width: 550px;
 }
 
-.callAction {
+.callAction,
+.callAction3 {
   font-size: 1rem;
   border: none;
   color: #ffff;
@@ -158,6 +359,9 @@ export default {
   border-radius: 50px;
   cursor: pointer;
   margin-top: 4rem;
+}
+.callAction3 {
+  margin-top: 0.5rem;
 }
 .callAction:hover {
   transform: rotateX("angle");
@@ -167,20 +371,22 @@ export default {
   background-color: black;
 }
 .img-contain {
-  height: 600px;
-  width: 600px;
+  height: 100%;
+  width: 100%;
   object-fit: contain;
   border-radius: 20px;
   filter: grayscale(1);
 }
-/* .imageContainer {
-  min-width: 440px;
-  min-height: 440px;
-} */
+.imageContainer {
+  min-height: 20vh;
+  min-width: 20vw;
+}
+
 .aboutDetails {
   margin-left: 5.6rem;
 }
-.textContainer {
+.textContainer,
+.contact_Text {
   font-size: 1rem;
   color: #000;
   line-height: 25px;
@@ -188,7 +394,8 @@ export default {
   margin-bottom: 2rem;
   width: 27vw;
 }
-.about_Text {
+.about_Text,
+.contactHeadline {
   font-size: 2.5rem;
   font-weight: 800;
 }
@@ -220,7 +427,7 @@ export default {
 .servicesIcon {
   width: 70px;
   height: 70px;
-  border-radius: 50%;
+  border-radius: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,7 +436,7 @@ export default {
 }
 
 .servicesHeader {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: #000;
   font-weight: 700;
 }
@@ -252,8 +459,40 @@ export default {
 }
 .servicesContainer {
   display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+
   margin-right: 4rem;
 }
+.servicesDesign {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  margin-top: 12rem;
+}
+
+.servicesDetails {
+  margin-top: 1rem;
+}
+.contactContainer {
+  background-color: #f8f8f8;
+  min-height: 700px;
+  margin-top: 5rem;
+  display: flex;
+  align-content: space-around;
+  /* justify-content: center; */
+  align-items: center;
+}
+.contactDetails {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
 @media screen and (max-width: 992px) {
   .headingText {
     font-size: 3.2rem;
@@ -261,7 +500,94 @@ export default {
   }
   .aboutContainer {
     margin-top: 15rem;
-    display: flex;
+    flex-direction: column;
   }
+  .aboutDetails {
+    margin-left: 0rem;
+    padding-left: 0;
+    padding-top: 50px;
+  }
+  .textContainer,
+  .contact_Text {
+    width: 100%;
+  }
+  .servicesDesign {
+    flex-direction: column;
+    margin-top: 5rem;
+  }
+  .contactDetails {
+    flex-direction: column;
+  }
+  .contactText {
+    margin-bottom: 2rem;
+  }
+  .servicesContainer {
+    margin-right: 0px;
+    justify-content: flex-start;
+    margin-bottom: 1.2rem;
+  }
+  .contactContainer {
+    padding-top: 100px;
+    padding-bottom: 200px;
+  }
+}
+.callAction:hover {
+  transform: perspective(200px) rotateY(15deg);
+}
+</style>
+
+<style scoped>
+.selectBtn {
+  border: none;
+  padding: 9px;
+  font-size: 17px;
+  color: #fff;
+}
+.functionBtn {
+  position: fixed;
+  top: 300px;
+  right: 0;
+}
+.pageContainer {
+  height: 400px;
+  width: 500px;
+  background-color: #fff; /* Set background color to white */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* White box shadow */
+}
+.colorPopPage {
+  position: fixed;
+  top: 465px;
+  right: 0;
+}
+.colorSet {
+  border: 1px solid;
+  cursor: pointer;
+}
+.colorChoose1 {
+  background-color: #008000;
+}
+.colorChoose2 {
+  background-color: #800080;
+}
+.colorChoose3 {
+  background-color: #ff0000;
+}
+.colorChoose4 {
+  background-color: #00ff00;
+}
+.colorChoose5 {
+  background-color: #800000;
+}
+.colorChoose6 {
+  background-color: #ff00ff;
+}
+.colorChoose7 {
+  background-color: #00ffff;
+}
+.colorChoose8 {
+  background-color: #ffff00;
+}
+.colorChoose9 {
+  background-color: #0000ff;
 }
 </style>
