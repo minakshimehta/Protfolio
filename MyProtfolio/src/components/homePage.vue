@@ -376,6 +376,17 @@ export default {
   object-fit: contain;
   border-radius: 20px;
   filter: grayscale(1);
+  position: relative;
+  animation: mymove 5s infinite;
+  animation-delay: 2s;
+}
+@keyframes mymove {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 100px;
+  }
 }
 .imageContainer {
   min-height: 20vh;
@@ -547,6 +558,10 @@ export default {
   position: fixed;
   top: 300px;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: flex-end;
 }
 .pageContainer {
   height: 400px;
